@@ -13,7 +13,7 @@ namespace MobileApp
 		{
 			InitializeComponent();
 
-			MainPage = new MobileApp.MainPage();
+			MainPage = new NavigationPage(new MobileApp.MainPage());
 		}
 
 		protected override void OnStart ()

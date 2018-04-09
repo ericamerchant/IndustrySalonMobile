@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.ContactSalon"
+             Title="Contact Salon">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Call/Text: 206-588-0570"></Label>
+            <Label Text="Email: industrysalonseattle@gmail.com"></Label>
+            <Label Text="Address: 801 East Thomas St. Suite B Seattle, Wa 98102"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
