@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileApp"
              x:Class="MobileApp.MainPage">
-
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
-
+    <StackLayout Orientation="Vertical" Spacing="1">
+	<Label Text="Industry Salon" />
+    <Button x:Name="myAppointmentsButton" Text="My Appointments" IsEnabled="true" Clicked="onMyAppointmentsClicked" />
+    <Button x:Name="newAppointmentButton" Text="New Appointment" IsEnabled="true" Clicked="onNewAppointmentClicked" />
+    <Button x:Name="contactUsButton" Text="Contact Industry Salon" IsEnabled="true" Clicked="onContactUsClicked" />
+    </StackLayout>
 </ContentPage>
