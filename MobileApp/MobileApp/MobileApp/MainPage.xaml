@@ -3,10 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileApp"
              x:Class="MobileApp.MainPage"
-             Title="Industry Salon Seattle">
-    <StackLayout Orientation="Vertical" Spacing="1">
-        <Button x:Name="myAppointmentsButton" Text="My Appointments" IsEnabled="true" Clicked="onMyAppointmentsClicked" />
-        <Button x:Name="newAppointmentButton" Text="New Appointment" IsEnabled="true" Clicked="onNewAppointmentClicked" />
-        <Button x:Name="contactUsButton" Text="Contact Industry Salon" IsEnabled="true" Clicked="onContactUsClicked" />
+             Title="Industry Salon Seattle"
+             BackgroundColor="WhiteSmoke">
+    <!--<ContentPage.Resources>
+        <StyleSheet Source="/MainPage.css" />
+    </ContentPage.Resources>-->
+    
+    <StackLayout Orientation="Vertical" Spacing="4" Margin="40, 20, 40, 20" Padding="0, 0, 0, 0">
+        <Image Source="industrylogo.png" />
+        <Label Font="Source Sans Pro" FontSize="18" TextColor="Black" Text="MENU" HorizontalTextAlignment="Center" />
+        <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
+        <Button x:Name="myAppointmentsButton" 
+                BackgroundColor="White"
+                Font="Source Sans Pro"
+                FontSize="18"
+                Text="My Appointments"
+                IsEnabled="true" 
+                Clicked="onMyAppointmentsClicked" />
+        <Button x:Name="newAppointmentButton" 
+                BackgroundColor="White"
+                Font="News Gothic"
+                FontSize="18"
+                Text="New Appointment"
+                IsEnabled="true" 
+                Clicked="onNewAppointmentClicked" />
+        <Button x:Name="contactUsButton" 
+                BackgroundColor="White"
+                Font="Times New Roman"
+                FontSize="18"
+                Text="Contact Industry Salon"
+                IsEnabled="true" 
+                Clicked="onContactUsClicked" />
     </StackLayout>
 </ContentPage>

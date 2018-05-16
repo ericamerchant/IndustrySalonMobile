@@ -32,4 +32,13 @@
       <DependentUpon>ViewAppointments.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)IndustryLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)industrylogo.jpg" />
+  </ItemGroup>
 </Project>
