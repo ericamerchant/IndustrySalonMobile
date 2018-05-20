@@ -9,28 +9,44 @@
         <StyleSheet Source="/MainPage.css" />
     </ContentPage.Resources>-->
     
-    <StackLayout Orientation="Vertical" Spacing="4" Margin="40, 20, 40, 20" Padding="0, 0, 0, 0">
+    <StackLayout Orientation="Vertical" Spacing="4" Margin="60, 30, 60, 30" Padding="0, 0, 0, 0">
         <Image Source="industrylogo.png" />
-        <Label Font="Source Sans Pro" FontSize="18" TextColor="Black" Text="MENU" HorizontalTextAlignment="Center" />
+        <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MENU" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
+        <!--<Label Text="Hello Forms with XAML">
+            <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="iOS" Value="MarkerFelt-Thin" />
+                    <On Platform="Android" Value="Lobster-Regular.ttf#Lobster-Regular" />
+                    <On Platform="UWP" Value="Assets/Fonts/Lobster-Regular.ttf#Lobster" />
+                </OnPlatform>
+            </Label.FontFamily>
+        </Label>-->
+
         <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
         <Button x:Name="myAppointmentsButton" 
                 BackgroundColor="White"
                 Font="Source Sans Pro"
-                FontSize="18"
+                FontSize="16"
+                Margin="0, 10, 0, 10"
+                HeightRequest="80"
                 Text="My Appointments"
                 IsEnabled="true" 
                 Clicked="onMyAppointmentsClicked" />
         <Button x:Name="newAppointmentButton" 
                 BackgroundColor="White"
                 Font="News Gothic"
-                FontSize="18"
+                FontSize="16"
+                Margin="0, 10, 0, 10"
+                HeightRequest="80"
                 Text="New Appointment"
                 IsEnabled="true" 
                 Clicked="onNewAppointmentClicked" />
         <Button x:Name="contactUsButton" 
                 BackgroundColor="White"
                 Font="Times New Roman"
-                FontSize="18"
+                FontSize="16"
+                Margin="0, 10, 0, 10"
+                HeightRequest="80"
                 Text="Contact Industry Salon"
                 IsEnabled="true" 
                 Clicked="onContactUsClicked" />
