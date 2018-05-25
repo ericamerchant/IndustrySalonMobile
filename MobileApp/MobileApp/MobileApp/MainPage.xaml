@@ -8,8 +8,8 @@
     <!--<ContentPage.Resources>
         <StyleSheet Source="/MainPage.css" />
     </ContentPage.Resources>-->
-    
-    <StackLayout Orientation="Vertical" Spacing="4" Margin="60, 30, 60, 30" Padding="0, 0, 0, 0">
+
+    <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
         <Image Source="industrylogo.png" />
         <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MENU" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
         <!--<Label Text="Hello Forms with XAML">
@@ -21,7 +21,6 @@
                 </OnPlatform>
             </Label.FontFamily>
         </Label>-->
-
         <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
         <Button x:Name="myAppointmentsButton" 
                 BackgroundColor="White"
