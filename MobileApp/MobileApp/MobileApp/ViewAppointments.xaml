@@ -2,9 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.ViewAppointments"
-             Title="View Appointments">
+             Title="View Appointments"
+             BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
+            <Image Source="industrylogo.png" />
+            <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MY APPOINTMENTS" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
+            <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

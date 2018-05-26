@@ -2,12 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.NewAppointment"
-             Title="New Appointment">
+             Title="New Appointment"
+             BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
+            <Image Source="industrylogo.png" />
+            <Label Font="Source Sans Pro" FontSize="14" 
+                   Text="NEW APPOINTMENT" TextColor="Black" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0, 0, 0, 10"/>
+            <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
+
             <WebView 
                 VerticalOptions="FillAndExpand" 
-                Source="https://squareup.com/appointments/book/5XVEPBMVDDRNE/industry-salon-seattle-seattle-wa"></WebView>
+                Source="https://squareup.com/appointments/book/5XVEPBMVDDRNE/industry-salon-seattle-seattle-wa">
+            </WebView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
