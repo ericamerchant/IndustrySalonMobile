@@ -73,7 +73,11 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Image Source="instagram.png"
                        HeightRequest="20"
-                       Margin="0, 20, 10, 10"/>
+                       Margin="0, 20, 10, 10">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="Image1" />
+                    </Image.GestureRecognizers>
+                </Image>
                 <Image Source="yelp.png"
                        HeightRequest="20"
                        Margin="0, 20, 10, 10"/>

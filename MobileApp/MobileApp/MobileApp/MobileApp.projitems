@@ -28,6 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NewAppointment.xaml.cs">
       <DependentUpon>NewAppointment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)TapViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewAppointments.xaml.cs">
       <DependentUpon>ViewAppointments.xaml</DependentUpon>
     </Compile>
