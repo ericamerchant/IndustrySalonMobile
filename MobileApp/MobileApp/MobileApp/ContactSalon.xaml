@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.ContactSalon"
-             Title="Contact Salon">
+             Title="Contact Salon"
+             BackgroundColor="#F0F4F4">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
             <Image Source="industrylogo.png" />

@@ -1,17 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MobileApp"
              x:Class="MobileApp.MainPage"
              Title="Industry Salon Seattle"
-             BackgroundColor="WhiteSmoke">
+             BackgroundColor="#F0F4F4">
     <!--<ContentPage.Resources>
         <StyleSheet Source="/MainPage.css" />
     </ContentPage.Resources>-->
 
     <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
         <Image Source="industrylogo.png" />
-        <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MENU" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
+        <Label Font="Source Sans Pro" 
+               FontSize="14" 
+               TextColor="Black" 
+               Text="MENU" 
+               HorizontalTextAlignment="Center" 
+               Margin="0, 0, 0, 10"/>
         <!--<Label Text="Hello Forms with XAML">
             <Label.FontFamily>
                 <OnPlatform x:TypeArguments="x:String">
@@ -25,7 +30,8 @@
         <Button x:Name="myAppointmentsButton" 
                 BackgroundColor="White"
                 Font="Source Sans Pro"
-                FontSize="16"
+                FontSize="18"
+                TextColor="Black"
                 Margin="0, 10, 0, 10"
                 HeightRequest="80"
                 Text="My Appointments"
@@ -33,8 +39,9 @@
                 Clicked="onMyAppointmentsClicked" />
         <Button x:Name="newAppointmentButton" 
                 BackgroundColor="White"
-                Font="News Gothic"
-                FontSize="16"
+                Font="Source Sans Pro"
+                FontSize="18"
+                TextColor="Black"
                 Margin="0, 10, 0, 10"
                 HeightRequest="80"
                 Text="New Appointment"
@@ -42,8 +49,9 @@
                 Clicked="onNewAppointmentClicked" />
         <Button x:Name="contactUsButton" 
                 BackgroundColor="White"
-                Font="Times New Roman"
-                FontSize="16"
+                Font="Source Sans Pro"
+                FontSize="18"
+                TextColor="Black"
                 Margin="0, 10, 0, 10"
                 HeightRequest="80"
                 Text="Contact Industry Salon"
