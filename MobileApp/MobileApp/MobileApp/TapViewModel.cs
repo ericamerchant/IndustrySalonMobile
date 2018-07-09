@@ -27,20 +27,17 @@ namespace MobileApp
         }
 
         //Called whenever TapCommand is executed (because it was wired up in the constructor)
-        void OnTapped ()
+        void OnTapped (object s)
         {
+            Debug.WriteLine("parameter: " + s);
             Device.OpenUri(new Uri("http://www.instagram.com/industrysalonseattle"));
         }
 
         #region INotifyPropertyChanged 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
         #endregion
+
+        //Source from github.com/xamarin/xamarin-forms-samples/tree/master/WorkingWithGestures/TapGesture/WorkingWithGestures
+        //docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/gestures/tap
     }
 }
