@@ -5,7 +5,7 @@
              Title="Contact Salon"
              BackgroundColor="#F0F4F4">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="4" Margin="50, 30, 50, 30" Padding="0, 0, 0, 0">
+        <StackLayout Orientation="Vertical" Spacing="4" Margin="40, 20, 40, 20" Padding="0, 0, 0, 0">
             <Image Source="industrylogo.png" />
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
@@ -38,10 +38,6 @@
                        Margin="0, 0, 0, 10" />
             </StackLayout>
 
-            <Label Text="Hours"  TextColor="Black"
-                   Font="Source Sans Pro" FontSize="14" FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   Margin="0, 0, 0, 0" />
             <Label Text="MON    10:00 AM - 7:00 PM"  TextColor="Black"
                    Font="Source Sans Pro" FontSize="12" 
                    HorizontalTextAlignment="Center"
@@ -73,15 +69,19 @@
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Image Source="instagram.png"
-                       HeightRequest="20"
-                       Margin="0, 20, 10, 10">
+                       HeightRequest="30"
+                       Margin="0, 10, 10, 10">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="Image1" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Image Source="yelp.png"
-                       HeightRequest="20"
-                       Margin="0, 20, 10, 10"/>
+                       HeightRequest="30"
+                       Margin="0, 10, 10, 10">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="Image2" />
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
            
         </StackLayout>
