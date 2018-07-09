@@ -29,7 +29,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-                <Image Source="store.png"
+                <Image Source="store2.png"
                        HeightRequest="15"
                        Margin="0, 0, 10, 10"/>
                 <Label Text="801 East Thomas Street Suite B  Seattle, WA 98102"  TextColor="Black"
@@ -75,11 +75,12 @@
                         <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="Image1" />
                     </Image.GestureRecognizers>
                 </Image>
+
                 <Image Source="yelp.png"
                        HeightRequest="30"
                        Margin="0, 10, 10, 10">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="Image2" />
+                        <TapGestureRecognizer Command="{Binding TapCommand2}" CommandParameter="Image2" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>

@@ -15,15 +15,22 @@ namespace MobileApp
     public class TapViewModel : INotifyPropertyChanged
     {
         ICommand tapCommand;
+        ICommand tapCommand2;
+
         public TapViewModel ()
         {
             tapCommand = new Command(OnTapped);
+            tapCommand2 = new Command(OnTapped2);
         }
 
         //Expose the TapCommand via a property so that Xaml can bind to it
         public ICommand TapCommand
         {
             get { return tapCommand; }
+        }
+        public ICommand TapCommand2
+        {
+            get { return tapCommand2; }
         }
 
         //Called whenever TapCommand is executed (because it was wired up in the constructor)
@@ -32,6 +39,12 @@ namespace MobileApp
             Debug.WriteLine("parameter: " + s);
             Device.OpenUri(new Uri("http://www.instagram.com/industrysalonseattle"));
         }
+        void OnTapped2 (object s)
+        {
+            Debug.WriteLine("parameter: " + s);
+            Device.OpenUri(new Uri("http://www.yelp.com"));
+        }
+
 
         #region INotifyPropertyChanged 
         public event PropertyChangedEventHandler PropertyChanged;
