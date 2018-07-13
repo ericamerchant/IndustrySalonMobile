@@ -22,9 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ContactSalon.xaml.cs">
       <DependentUpon>ContactSalon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
+    </EmbeddedResource>
     <Compile Include="$(MSBuildThisFileDirectory)NewAppointment.xaml.cs">
       <DependentUpon>NewAppointment.xaml</DependentUpon>
     </Compile>

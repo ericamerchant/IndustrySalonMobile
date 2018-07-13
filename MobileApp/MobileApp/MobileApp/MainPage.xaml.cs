@@ -14,6 +14,7 @@ namespace MobileApp
             InitializeComponent();
         }
 
+
         public async void onMyAppointmentsClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ViewAppointments());
