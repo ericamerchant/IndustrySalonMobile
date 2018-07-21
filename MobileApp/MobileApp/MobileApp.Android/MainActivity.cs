@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Support.V4.Content;
+using Android;
+using Java.Lang;
 
 namespace MobileApp.Droid
 {
@@ -22,6 +25,9 @@ namespace MobileApp.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
+        
+        
     }
+    
 }
 
