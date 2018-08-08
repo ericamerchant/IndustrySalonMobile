@@ -122,6 +122,24 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.122203" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\instagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\store.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\store2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\yelp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\MobileApp\MobileApp.projitems" Label="Shared" />
 </Project>
