@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -9,6 +10,8 @@ namespace MobileApp
 {
 	public partial class App : Application
 	{
+        static ApptmntDatabase database;
+
 		public App ()
 		{
 			InitializeComponent();
@@ -30,5 +33,21 @@ namespace MobileApp
 		{
 			// Handle when your app resumes
 		}
-	}
+
+        //creates a new db, otherwise accesses come from existing
+        public static ApptmntDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new ApptmntDatabase(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SalonSQLite.db3"));
+                }
+                return database;
+            }
+        }
+
+        
+    }
 }

@@ -19,10 +19,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ApptmntDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Appointment.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ContactSalon.xaml.cs">
       <DependentUpon>ContactSalon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)ReadSMS.cs" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </EmbeddedResource>

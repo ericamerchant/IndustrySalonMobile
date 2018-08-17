@@ -1,14 +1,23 @@
-﻿using Android;
-using Android.Content;
-using System;
+﻿#if __ANDROID__
+    using Android;
+    using Android.App;
+    using Android.Content;
+    using System;
+#endif
 [assembly: Android.App.UsesPermission(Manifest.Permission.ReceiveSms)]
-[BroadcastReceiver]
-[IntentFilter(
-  new[] { "android.provider.Telephony.SMS_RECEIVED" })]
+
 namespace MobileApp
 {
+    //Exported allows it to receive messages outside the application
+    [BroadcastReceiver(Enabled = true, Exported = true)]
+    //think this is statically registering it
+    [IntentFilter(new[] { "android.provider.Telephony.SMS_RECEIVED" })]
     public class ReadSMS : BroadcastReceiver
     {
+        public override void OnReceive(Context context, Intent intent)
+        {
+            String value = intent.GetStringExtra("key");
+        }
         /*
         public Boolean HasSMSPermission()
         {
@@ -55,9 +64,6 @@ namespace MobileApp
             builder.show();
         }
         */
-        public override void OnReceive(Context context, Intent intent)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

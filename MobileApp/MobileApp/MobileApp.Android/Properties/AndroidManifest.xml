@@ -3,4 +3,6 @@
 	<uses-sdk android:minSdkVersion="15" />
 	<application android:label="MobileApp.Android"></application>
   <uses-permission android:name="android.permission.READ_SMS" />
+  <uses-permission android:name="android.permission.RECEIVE_SMS" />
+
 </manifest>
