@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+//using SQLite;
+using System.IO;
 
 namespace MobileApp
 {
 	public partial class App : Application
 	{
+        static AppointmentDB database;
 		public App ()
 		{
 			InitializeComponent();
@@ -30,5 +33,19 @@ namespace MobileApp
 		{
 			// Handle when your app resumes
 		}
-	}
+
+        //creates a new db, otherwise accesses come from existing
+        public static AppointmentDB Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    //database = new AppointmentDB(
+                    //  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SalonSQLite.db3"));
+                }
+                return database;
+            }
+        }
+    }
 }

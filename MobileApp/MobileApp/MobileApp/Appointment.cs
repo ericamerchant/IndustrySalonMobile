@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SQLite;
+//using SQLite;
 
 namespace MobileApp
 {
-    [Table("Hairstyling")]
-    class Appointment
+    //[Table("Hairstyling")]
+    public class Appointment
     {
+        /*
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
         [Column("day")]
@@ -17,6 +18,6 @@ namespace MobileApp
         [Column("service")]
         public String Service { get; set; }
         [Column("isConfirmed")]
-        public Boolean IsConfirmed { get; set; }
+        public Boolean IsConfirmed { get; set; } */
     }
 }

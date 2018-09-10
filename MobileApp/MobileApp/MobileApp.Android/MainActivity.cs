@@ -5,6 +5,10 @@ using Android.OS;
 using Android.Content;
 using Android.Util;
 using System.Collections.Generic;
+//using SQLite;
+using System;
+using Debug = System.Diagnostics.Debug;
+using Trace = System.Diagnostics.Trace;
 
 namespace MobileApp.Droid
 {
@@ -18,7 +22,11 @@ namespace MobileApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            Debug.Write("Before Create");
+
             base.OnCreate(bundle);
+
+            Debug.Write("Before LoadApplication");
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
@@ -27,10 +35,12 @@ namespace MobileApp.Droid
             filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
             RegisterReceiver(smsReceiver, filter);
 
-            List<string> possibleMsgs = smsReceiver.confirmMsgs;
-            Log.Debug("MessageRead", possibleMsgs[0]);
+            smsReceiver.OnReceive(this.ApplicationContext, this.Intent);
 
-            System.Diagnostics.Debug.WriteLine("Checking things out");
+            List<string> possibleMsgs = smsReceiver.confirmMsgs;
+            Debug.Write("MessageRead " + possibleMsgs[0]);
+
+            Debug.Write("Checking things out");
 
         }
 
@@ -60,6 +70,22 @@ namespace MobileApp.Droid
             base.OnPause();
             UnregisterReceiver(smsReceiver);
         }
+
+        /*
+        public void dbTester(SQLiteConnection db)
+        {
+            Appointment testApptmnt = new Appointment();
+            testApptmnt.Day = "Feb";
+            testApptmnt.Time = "23";
+            testApptmnt.Service = "Balayage";
+            db.Insert(testApptmnt);
+
+            var sample = from s in db.Table<Appointment>()
+                         where s.Service.StartsWith("Balayage")
+                         select s;
+
+            Console.WriteLine(sample.FirstOrDefault().Service);
+        } */
     }
 }
 
