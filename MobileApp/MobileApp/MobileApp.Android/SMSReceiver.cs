@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -14,7 +15,7 @@ using Android.Widget;
 
 namespace MobileApp.Droid
 {
-    [BroadcastReceiver]
+    [BroadcastReceiver(Enabled = true)]
     public class SMSReceiver : BroadcastReceiver
     {
         private const string IntentAction = "android.provider.Telephony.SMS_RECEIVED";
@@ -50,10 +51,10 @@ namespace MobileApp.Droid
                     //check for if the message contains confirmation info - could also look at senderInfo
                     var sender = msgs[i].OriginatingAddress;
                     theMessage = msgs[i].DisplayMessageBody;
-                    if (theMessage.ToUpper().StartsWith("Hi ") && sender.Equals("(206) 755-4942"))
+                    if (sender.Equals("2067554942"))
                     {
                         confirmMsgs.Add(theMessage);
-                        Toast.MakeText(context, "Received SMS: " + theMessage, ToastLength.Long).Show();
+                        System.Diagnostics.Debug.WriteLine("Received SMS: " + theMessage);
 
                     }
 

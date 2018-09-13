@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-//using SQLite;
+using SQLite;
 
 namespace MobileApp
 {
     public class AppointmentDB
     {
-        /*
+        
         //readonly in front???
         SQLiteAsyncConnection database;
 
@@ -63,6 +63,6 @@ namespace MobileApp
         //then delete from db those dates so they aren't unnecessarily stored (or keep? if we can 
         //get more info on if we can know what stylist they've seen or something then maybe)
         //maybe that's a separate section for you to input your own info to keep track
-        */
+        
     }
 }

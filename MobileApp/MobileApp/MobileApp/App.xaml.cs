@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
-//using SQLite;
+using SQLite;
 using System.IO;
 
 namespace MobileApp
@@ -41,8 +41,8 @@ namespace MobileApp
             {
                 if (database == null)
                 {
-                    //database = new AppointmentDB(
-                    //  Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SalonSQLite.db3"));
+                    database = new AppointmentDB(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SalonSQLite.db3"));
                 }
                 return database;
             }

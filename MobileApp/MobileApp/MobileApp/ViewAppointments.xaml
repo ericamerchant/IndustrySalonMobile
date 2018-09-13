@@ -17,6 +17,8 @@
                         Value="3" />
                 <Setter Property="HorizontalOptions"
                         Value="Center" />
+                <Setter Property="Margin"
+                        Value="0,0,0,10" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -26,7 +28,7 @@
             <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MY APPOINTMENTS" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
             <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
 
-            <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="You currently do not have any appointments scheduled." HorizontalOptions="Center" WidthRequest="300" Margin="0, 0, 0, 10" BackgroundColor="White"/>
+            <!-- <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="You currently do not have any appointments scheduled." HorizontalOptions="Center" WidthRequest="300" Margin="0, 0, 0, 10" BackgroundColor="White" /> -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
