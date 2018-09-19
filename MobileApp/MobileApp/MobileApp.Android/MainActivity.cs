@@ -42,16 +42,15 @@ namespace MobileApp.Droid
                     String date = "";
                     String time = "";
 
-                    /*
-                    if (s.IndexOf("on") < 0)
+                    if (s.IndexOf("on") > 0)
                     {
                         var dateTemp = s.Substring(s.IndexOf("on") + 3);
                         date = dateTemp.Substring(0, dateTemp.IndexOf(" "));
 
-                        if (dateTemp.IndexOf(" ") < 0)
+                        if (dateTemp.IndexOf(" ") > 0)
                         {
                             var timeTemp = dateTemp.Substring(dateTemp.IndexOf(" ") + 1);
-                            time = timeTemp.Substring(0, timeTemp.IndexOf("is") - 1);
+                            time = timeTemp.Substring(0, timeTemp.IndexOf("has") - 1);
                         }
                         else
                             time = "-1";
@@ -61,7 +60,6 @@ namespace MobileApp.Droid
                         date = "-1";
                         time = "-1";
                     }
-                    */
 
                     //adds the upcoming appointment to the database
                     Appointment upcomingAppointment = new Appointment();
@@ -70,7 +68,7 @@ namespace MobileApp.Droid
                     upcomingAppointment.Service = s;
                     upcomingAppointment.IsConfirmed = true;
 
-                    //check if already in the db
+                    //check if already in the db, if not save to db, if so do nothing
                     List<Appointment> alreadyInDB = db.GetAppointmentSameDay(upcomingAppointment.Day);
                     if(alreadyInDB.Count > 0)
                     {
@@ -138,6 +136,7 @@ namespace MobileApp.Droid
                 {
                     String address = cursor.GetString(1);
                     String body = cursor.GetString(3);
+                    //maybe add another check to see what the date is, idk if that would help remove some unnecessary ones
                     if (address.Equals("2244273491"))
                         sms.Add(body);
 

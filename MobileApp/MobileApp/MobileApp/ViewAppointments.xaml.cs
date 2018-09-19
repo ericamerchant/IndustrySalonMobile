@@ -23,25 +23,17 @@ namespace MobileApp
             Debug.WriteLine("Are we in view appointments yet");
 			InitializeComponent();
 
-            //try
-            //{
             dbTest();
             currAppointmentsList = database.GetAllAppointments();
-            String temp = "";
-            //basically need to check if something already exists in DB before adding it ever
+            RemoveOutdatedAppointments();
 
-            /*
-            if(currAppointmentsList.Count > 3)
-            {
-                database.DeleteAllAppointments();
-            }*/
-            
+            String temp = "";
             
             if(currAppointmentsList.Count > 0)
             {
                 foreach (var s in currAppointmentsList)
                 {
-                    temp += s.Service + " " + s.Id + "\n";
+                    temp += "You have an appointment scheduled for " + s.Day + " " + s.Time + "\n";
                 }
             }
             else
@@ -49,16 +41,56 @@ namespace MobileApp
                 temp = "You currently do not have any appointments scheduled.";
             }
 
-            seeAppointmentBox.Text = temp;
-                
+            seeAppointmentBox.Text = temp;              
+        }
 
+        // removes any appointments from the database if scheduled for a date that has already passed
+        public void RemoveOutdatedAppointments()
+        { 
+            DateTime currDate = DateTime.Now;
+            List<Appointment> AppointmentToRemove = new List<Appointment>();
 
+            foreach(var s in currAppointmentsList)
+            {
+                // takes String Date information from db and converts to integer form of month and day
+                String[] monthAndDay = s.Day.Split('/');
+                int theMonth = Convert.ToInt32(monthAndDay[0]);
+                int theDay = Convert.ToInt32(monthAndDay[1]);
 
-            //dbTest();
-                    
-                //RemoveOutdatedAppointments();
+                // sees if the appointment date happened before the current date, if so adds to removal list
+                    if (theMonth == currDate.Month)
+                    {
+                        if (theDay < currDate.Day)
+                            AppointmentToRemove.Add(s);
+                        
+                    }
+                    else if (theMonth < currDate.Month)
+                        AppointmentToRemove.Add(s);
 
-                /*
+            }
+
+            // removes necessary dates from db - could potentially just screen this as the messages come in
+            for(int i = 0; i < AppointmentToRemove.Count; i++)
+            {
+                database.DeleteAppointment(AppointmentToRemove[i]);
+            }
+        }
+
+        public void dbTest()
+        {
+            Appointment testApptmnt = new Appointment();
+            testApptmnt.Day = "Feb";
+            testApptmnt.Time = "23";
+            testApptmnt.Service = "TestingServices";
+            database.SaveAppointment(testApptmnt);
+
+            //temp += database.GetAppointment(testApptmnt.Id).Service;
+
+            //seeAppointmentBox.Text = temp;
+        }
+
+        /*
+         * Trying something to see if I could programmatically create separate labels for each appointment.
                 if (currAppointmentsList != null)
                 {
                     // generates a single Label for when no current appointments found
@@ -89,62 +121,7 @@ namespace MobileApp
                     noAppointments.Style = this.Resources["eachAppointmentStyle"] as Style;
                     noAppointments.Text = "You currently do not have any appointments scheduled.";
                 }
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("Exception " + e);
             } */
-
-            // 1)disregard red it works, 2) just add text I guess rather than whole extra label deal
-
-
-            // maybe use a listView
-
-
-        }
-
-        // removes any appointments from the database if scheduled for a date that has already passed
-        public void RemoveOutdatedAppointments()
-        { 
-            DateTime currDate = DateTime.Now;
-            List<Appointment> AppointmentToRemove = new List<Appointment>();
-
-            foreach(var s in currAppointmentsList)
-            {
-                // takes String Date information from db and converts to integer form of month and day
-                String[] monthAndDay = s.Day.Split('/');
-                int theMonth = Convert.ToInt32(monthAndDay[0]);
-                int theDay = Convert.ToInt32(monthAndDay[1]);
-
-                // sees if the appointment date happened before the current date, if so adds to removal list
-                    if (theMonth == currDate.Month)
-                    {
-                        if (theDay < currDate.Day)
-                            AppointmentToRemove.Add(s);
-                        else if (theMonth < currDate.Month)
-                            AppointmentToRemove.Add(s);
-                    }
-                    
-            }
-
-            // removes necessary dates from db - could potentially just screen this as the messages come in
-            for(int i = 0; i < AppointmentToRemove.Count; i++)
-            {
-                database.DeleteAppointment(AppointmentToRemove[i]);
-            }
-        }
-
-        public void dbTest()
-        {
-            Appointment testApptmnt = new Appointment();
-            testApptmnt.Day = "Feb";
-            testApptmnt.Time = "23";
-            testApptmnt.Service = "TestingServices";
-            database.SaveAppointment(testApptmnt);
-
-            //temp += database.GetAppointment(testApptmnt.Id).Service;
-
-            //seeAppointmentBox.Text = temp;
-        }
     }
 }
+ 
