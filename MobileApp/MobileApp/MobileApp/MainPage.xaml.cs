@@ -12,9 +12,7 @@ namespace MobileApp
     {
         public MainPage()
         {
-            Debug.Write("Maybe app is starting");
             InitializeComponent();
-            Debug.Write("Is anything being sent to output");
         }
 
         public async void onMyAppointmentsClicked(object sender, EventArgs e)

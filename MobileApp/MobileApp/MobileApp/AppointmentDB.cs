@@ -10,53 +10,70 @@ namespace MobileApp
     {
         
         //readonly in front???
-        SQLiteAsyncConnection database;
-
+        SQLiteConnection database;
 
         public AppointmentDB(string dbPath)
         {
-            database = new SQLiteAsyncConnection(dbPath);
-            database.CreateTableAsync<Appointment>().Wait();
+            database = new SQLiteConnection(dbPath);
+            database.CreateTable<Appointment>();
         }
         
 
-        public Task<int> SaveAppointmentAsync(Appointment confirmed)
+        public void SaveAppointment(Appointment confirmed)
         {
             if (confirmed.Id != 0)
             {
-                return database.UpdateAsync(confirmed);
+                database.Update(confirmed);
             }
             else
             {
-                return database.InsertAsync(confirmed);
+                database.Insert(confirmed);
             }
         }
 
-        public Task<int> DeleteAppointmointmentAsync(Appointment appointment)
+        public void DeleteAppointment(Appointment appointment)
         {
-            return database.DeleteAsync(appointment);
+            database.Delete(appointment);
         }
 
-        public Task<Appointment> GetAppointmentAsync(int id)
+        public Appointment GetAppointment(int id)
         {
-            return database.Table<Appointment>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            return database.Get<Appointment>(id);
         }
 
-        public Task<List<Appointment>> GetAllAppointmentsAsync()
+        public List<Appointment> GetAllAppointments()
         {
-            return database.Table<Appointment>().ToListAsync();
+            List < Appointment > list = new List<Appointment>();
+            var table = database.Table<Appointment>();
+            foreach( var s in table)
+            {
+                list.Add(s);
+            }
+            return list;
         }
 
-        public String GetService(Appointment appointment)
+        public List<Appointment> GetAppointmentSameDay(String day)
         {
-            var findService = from s in database.Table<Appointment>()
-                         where s.Service.StartsWith("Balayage")
+            List<Appointment> list = new List<Appointment>();
+
+            var things = from s in database.Table < Appointment >()
+                         where s.Day.StartsWith(day)
                          select s;
-            //var findService = database.QueryAsync<Appointment>("Select )
+            foreach(var elem in things)
+            {
+                list.Add(elem);
+            }
 
-            //var strFindService = (Appointment)BindingContext;
-            //return findService.FirstOrDefaultAsync ().Service;
-            return "idk";
+            return list;
+        }
+
+        public void DeleteAllAppointments()
+        {
+            List<Appointment> list = GetAllAppointments();
+            for(int i = 0; i < list.Count; i++)
+            {
+                database.Delete(list[i]);
+            }
         }
 
         //set up a method to access all appointments whose date is beyond the current date

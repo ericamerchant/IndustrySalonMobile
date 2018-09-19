@@ -21,9 +21,9 @@ namespace MobileApp.Droid
         private const string IntentAction = "android.provider.Telephony.SMS_RECEIVED";
         string version_code = Build.VERSION.Sdk;
         public List<String> confirmMsgs = new List<String>();
+
         public override void OnReceive(Context context, Intent intent)
         {
-            Toast.MakeText(context, "Received intent!", ToastLength.Short).Show();
             try
             {
                 if (intent.Action != IntentAction)
@@ -39,6 +39,8 @@ namespace MobileApp.Droid
                 var castedPdus = JNIEnv.GetArray<Java.Lang.Object>(pdus.Handle);
                 var msgs = new SmsMessage[castedPdus.Length];
                 var theMessage = "";
+                if (msgs.Length == 0)
+                    confirmMsgs.Add("In case nothing is pulled");
                 for (var i = 0; i < msgs.Length; i++)
                 {
                     var bytes = new byte[JNIEnv.GetArrayLength(castedPdus[i].Handle)];
@@ -51,6 +53,12 @@ namespace MobileApp.Droid
                     //check for if the message contains confirmation info - could also look at senderInfo
                     var sender = msgs[i].OriginatingAddress;
                     theMessage = msgs[i].DisplayMessageBody;
+                    if(theMessage == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine("SMS Receiver is null for ind message");
+                        confirmMsgs.Add("My message is null");
+
+                    }
                     if (sender.Equals("2067554942"))
                     {
                         confirmMsgs.Add(theMessage);

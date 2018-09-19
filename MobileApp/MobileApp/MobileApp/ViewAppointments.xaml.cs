@@ -1,4 +1,4 @@
-﻿using Android.Widget;
+﻿//using Xamarin.Forms.PlatformConfiguration.Android.Widget;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -17,42 +17,90 @@ namespace MobileApp
 	public partial class ViewAppointments : ContentPage
 	{
         AppointmentDB database = App.Database;
-        List<Appointment> currAppointmentsList;
+        List<Appointment> currAppointmentsList = new List<Appointment>();
         public ViewAppointments()
         {
             Debug.WriteLine("Are we in view appointments yet");
-			InitializeComponent ();
+			InitializeComponent();
 
-            GetAllAppointments();
-            RemoveOutdatedAppointments();
+            //try
+            //{
+            dbTest();
+            currAppointmentsList = database.GetAllAppointments();
+            String temp = "";
+            //basically need to check if something already exists in DB before adding it ever
 
-            // generates a single Label for when no current appointments found
-            if (currAppointmentsList.Count == 0)
+            /*
+            if(currAppointmentsList.Count > 3)
             {
-                Label noAppointments = new Label();
-                noAppointments.Style = this.Resources["eachAppointmentStyle"] as Style;
-                noAppointments.Text = "You currently do not have any appointments scheduled.";
-            }
-
-            // goes through each Appointment in list, creates a label, and sets to explicit style from xaml
-            else
+                database.DeleteAllAppointments();
+            }*/
+            
+            
+            if(currAppointmentsList.Count > 0)
             {
                 foreach (var s in currAppointmentsList)
                 {
-                    Label seeAppointment = new Label();
-                    seeAppointment.Style = this.Resources["eachAppointmentStyle"] as Style;
-                    seeAppointment.Text = "You have an appointment at Industry Salon scheduled for " + s.Day + " at " + s.Time + ".";
+                    temp += s.Service + " " + s.Id + "\n";
                 }
             }
+            else
+            {
+                temp = "You currently do not have any appointments scheduled.";
+            }
+
+            seeAppointmentBox.Text = temp;
+                
+
+
+
+            //dbTest();
+                    
+                //RemoveOutdatedAppointments();
+
+                /*
+                if (currAppointmentsList != null)
+                {
+                    // generates a single Label for when no current appointments found
+                    if (currAppointmentsList.Count == 0)
+                    {
+                        Label noAppointments = new Label();
+                        noAppointments.Style = this.Resources["eachAppointmentStyle"] as Style;
+                        noAppointments.Text = "You currently do not have any appointments scheduled.";
+                    }
+
+                    // goes through each Appointment in list, creates a label, and sets to explicit style from xaml
+                    else
+                    {
+                        foreach (var s in currAppointmentsList)
+                        {
+                            Label seeAppointment = new Label();
+                            seeAppointment.Style = this.Resources["eachAppointmentStyle"] as Style;
+                            if (seeAppointment.Text != null)
+                                seeAppointment.Text = "You have an appointment at Industry Salon scheduled for " + s.Day + " at " + s.Time + ".";
+                        }
+                    }
+                }
+
+                else
+                {
+                    Debug.WriteLine("Database access is given as null");
+                    Label noAppointments = new Label();
+                    noAppointments.Style = this.Resources["eachAppointmentStyle"] as Style;
+                    noAppointments.Text = "You currently do not have any appointments scheduled.";
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("Exception " + e);
+            } */
+
+            // 1)disregard red it works, 2) just add text I guess rather than whole extra label deal
+
+
             // maybe use a listView
 
 
-        }
-
-        // helper method to get a list of all Appointments from database through waiting for Task to return
-        async void GetAllAppointments()
-        {
-            currAppointmentsList = await database.GetAllAppointmentsAsync();
         }
 
         // removes any appointments from the database if scheduled for a date that has already passed
@@ -82,39 +130,21 @@ namespace MobileApp
             // removes necessary dates from db - could potentially just screen this as the messages come in
             for(int i = 0; i < AppointmentToRemove.Count; i++)
             {
-                DeleteAppointments(AppointmentToRemove[i]);
+                database.DeleteAppointment(AppointmentToRemove[i]);
             }
         }
 
-        // helper method to delete appointments by waiting for async Task to finish/return
-        async void DeleteAppointments(Appointment toDelete)
+        public void dbTest()
         {
-            await database.DeleteAppointmointmentAsync(toDelete);
-        }
-
-        /*
-        async void dbTester()
-        {
-            var db = new AppointmentDB(
-                  Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.LocalApplicationData), "SalonSQLite.db3"));
             Appointment testApptmnt = new Appointment();
             testApptmnt.Day = "Feb";
             testApptmnt.Time = "23";
-            testApptmnt.Service = "Balayage";
-            //testApptmnt.Id = 1;
-            await App.Database.SaveAppointmentAsync(testApptmnt);
+            testApptmnt.Service = "TestingServices";
+            database.SaveAppointment(testApptmnt);
 
-            
-            var sample = from s in db.Table<Appointment>()
-                         where s.Service.StartsWith("Balayage")
-                         select s;
-            
+            //temp += database.GetAppointment(testApptmnt.Id).Service;
 
-            
-
-            Console.WriteLine(sample.FirstOrDefault().Service);
-
-            return db.GetService(sample);
-        }*/
+            //seeAppointmentBox.Text = temp;
+        }
     }
 }

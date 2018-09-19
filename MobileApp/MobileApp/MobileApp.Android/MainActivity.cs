@@ -27,65 +27,77 @@ namespace MobileApp.Droid
 
             //smsReceiver = new SMSReceiver();
             //filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-            RegisterReceiver(smsReceiver, filter);
+            
+            //RegisterReceiver(smsReceiver, filter);
+            Debug.WriteLine("!!!!!!!!!!!!Receiver Registered!!!!!!!!!!!!!!!!!!!!!!");
+            //smsReceiver.OnReceive(this.ApplicationContext, this.Intent);
 
-            smsReceiver.OnReceive(this.ApplicationContext, this.Intent);
+            List<string> possibleMsgs = readInbox();
 
-            List<string> possibleMsgs = smsReceiver.confirmMsgs;
-            if (possibleMsgs.Count > 0)
-                Debug.Write("MessageRead " + possibleMsgs[0]);
-            else
-                Debug.Write("No messages pulled");
-
-            //loops through each SMS message body to gain date and time info for each appointment
-            foreach(var s in possibleMsgs)
+            if(possibleMsgs != null)
             {
-                String date;
-                String time;
-                if(s.IndexOf("on") < 0)
+                //loops through each SMS message body to gain date and time info for each appointment
+                foreach (var s in possibleMsgs)
                 {
-                    var dateTemp = s.Substring(s.IndexOf("on") + 3);
-                    date = dateTemp.Substring(0, dateTemp.IndexOf(" "));
+                    String date = "";
+                    String time = "";
 
-                    if (dateTemp.IndexOf(" ") < 0)
+                    /*
+                    if (s.IndexOf("on") < 0)
                     {
-                        var timeTemp = dateTemp.Substring(dateTemp.IndexOf(" ") + 1);
-                        time = timeTemp.Substring(0, timeTemp.IndexOf("is") - 1);
+                        var dateTemp = s.Substring(s.IndexOf("on") + 3);
+                        date = dateTemp.Substring(0, dateTemp.IndexOf(" "));
+
+                        if (dateTemp.IndexOf(" ") < 0)
+                        {
+                            var timeTemp = dateTemp.Substring(dateTemp.IndexOf(" ") + 1);
+                            time = timeTemp.Substring(0, timeTemp.IndexOf("is") - 1);
+                        }
+                        else
+                            time = "-1";
                     }
                     else
+                    {
+                        date = "-1";
                         time = "-1";
-                }
-                else
-                {
-                    date = "-1";
-                    time = "-1";
-                }
+                    }
+                    */
 
-                //adds the upcoming appointment to the database
-                Appointment upcomingAppointment = new Appointment();
-                upcomingAppointment.Day = date;
-                upcomingAppointment.Time = time;
-                upcomingAppointment.Service = "standard";
-                upcomingAppointment.IsConfirmed = true;
-                addAppointment(upcomingAppointment);
-                
+                    //adds the upcoming appointment to the database
+                    Appointment upcomingAppointment = new Appointment();
+                    upcomingAppointment.Day = date;
+                    upcomingAppointment.Time = time;
+                    upcomingAppointment.Service = s;
+                    upcomingAppointment.IsConfirmed = true;
+
+                    //check if already in the db
+                    List<Appointment> alreadyInDB = db.GetAppointmentSameDay(upcomingAppointment.Day);
+                    if(alreadyInDB.Count > 0)
+                    {
+                        foreach(var apptmnt in alreadyInDB)
+                        {
+                            if (!apptmnt.Time.Equals(upcomingAppointment.Time))
+                                db.SaveAppointment(upcomingAppointment);
+                        }
+                    }
+                    else if(alreadyInDB.Count == 0) 
+                        db.SaveAppointment(upcomingAppointment);
+
+                }
             }
+            
 
+            dbTester();
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
 
 
         }
 
-        //waits for appointment to be added to database
-        async void addAppointment(Appointment a)
-        {
-            await db.SaveAppointmentAsync(a);
-        }
-
         protected override void OnResume()
         {
             base.OnResume();
+            /*
             try
             {
                 // Registering the broadcast receiver to detect sms from local phone when activity restarts
@@ -95,57 +107,63 @@ namespace MobileApp.Droid
                     smsReceiver = new SMSReceiver();
                     this.RegisterReceiver(this.smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
                 }
-
-
             }
             catch (System.Exception ex)
             {
                 Log.Debug("App2", ex.Message);
-            }
+            } */
         }
-
+        
         protected override void OnPause()
         {
             base.OnPause();
-            UnregisterReceiver(smsReceiver);
-        }
+            //UnregisterReceiver(smsReceiver);
+        } 
 
         /*
+         * Reads all SMS messages from inbox and adds those that match the phone number (address) of the 
+         * confirmation text for Industry Salon Appointments to a List.
+         * 
+        */
         public List<String> readInbox()
         {
             List<String> sms = new List<String>();
 
             Android.Net.Uri uriSms = Android.Net.Uri.Parse("content://sms/inbox");
-            ICursor cursor = this.ContentResolver.Query(uriSms, new String[] { "_id", "address", "date", "body" }, null, null, null);
+            Android.Database.ICursor cursor = this.ContentResolver.Query(uriSms, new String[] { "_id", "address", "date", "body" }, null, null, null);
 
-            cursor.moveToFirst();
-            while (cursor.moveToNext())
+            if (cursor.MoveToFirst())
             {
-                String address = cursor.getString(1);
-                String body = cursor.getString(3);
+                while (cursor.MoveToNext())
+                {
+                    String address = cursor.GetString(1);
+                    String body = cursor.GetString(3);
+                    if (address.Equals("2244273491"))
+                        sms.Add(body);
 
-                sms.Add("Address=&gt; " + address + "n SMS =&gt; " + body);
+                    //sms.Add("Address=&gt; " + address + "n SMS =&gt; " + body);
+                }
+            }
+            else
+            {
+                // no sms found
             }
             return sms;
-
-        }
-        */
-
+        }     
+        
         /*
-        public void dbTester(SQLiteConnection db)
+         * Creates a sample Appointment and adds it to the db to make sure the connection is right
+         * 
+        */
+        public void dbTester()
         {
+            Console.WriteLine("Inside dbTester MainActivity");
             Appointment testApptmnt = new Appointment();
             testApptmnt.Day = "Feb";
             testApptmnt.Time = "23";
             testApptmnt.Service = "Balayage";
-            db.Insert(testApptmnt);
-
-            var sample = from s in db.Table<Appointment>()
-                         where s.Service.StartsWith("Balayage")
-                         select s;
-
-            Console.WriteLine(sample.FirstOrDefault().Service);
-        } */
+            db.SaveAppointment(testApptmnt);
+        } 
     }
 }
 
