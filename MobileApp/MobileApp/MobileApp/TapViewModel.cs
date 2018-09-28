@@ -16,11 +16,13 @@ namespace MobileApp
     {
         ICommand tapCommand;
         ICommand tapCommand2;
+        ICommand tapCommand3;
 
         public TapViewModel ()
         {
             tapCommand = new Command(OnTapped);
             tapCommand2 = new Command(OnTapped2);
+            tapCommand3 = new Command(OnTapped3);
         }
 
         //Expose the TapCommand via a property so that Xaml can bind to it
@@ -33,6 +35,11 @@ namespace MobileApp
             get { return tapCommand2; }
         }
 
+        public ICommand TapCommand3
+        {
+            get { return tapCommand3; }
+        }
+
         //Called whenever TapCommand is executed (because it was wired up in the constructor)
         void OnTapped (object s)
         {
@@ -43,6 +50,12 @@ namespace MobileApp
         {
             Debug.WriteLine("parameter: " + s);
             Device.OpenUri(new Uri("http://www.yelp.com"));
+        }
+
+        void OnTapped3 (object s)
+        {
+            //check this  is the proper format for the phoneNum
+            Device.OpenUri(new Uri("tel:206588-05-70"));
         }
 
 
