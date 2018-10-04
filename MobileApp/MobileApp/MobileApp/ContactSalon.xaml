@@ -28,8 +28,12 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                 <Image Source="mail.png"
                        HeightRequest="15"
-                       Margin="0, 0, 10, 10"/>
-                <Label Text="industrysalonseattle@gmail.com"  TextColor="Black"
+                       Margin="0, 0, 10, 10" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapCommand4}" CommandParameter="Image4" />
+                </Image.GestureRecognizers>
+                </Image>
+                    <Label Text="industrysalonseattle@gmail.com"  TextColor="Black"
                        Font="Source Sans Pro" FontSize="14" 
                        Margin="0, 0, 0, 10"
                        HorizontalTextAlignment="Start"/>

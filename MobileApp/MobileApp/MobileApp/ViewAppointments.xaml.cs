@@ -1,12 +1,6 @@
-﻿//using Xamarin.Forms.PlatformConfiguration.Android.Widget;
-using SQLite;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +14,6 @@ namespace MobileApp
         List<Appointment> currAppointmentsList = new List<Appointment>();
         public ViewAppointments()
         {
-            Debug.WriteLine("Are we in view appointments yet");
 			InitializeComponent();
 
             dbTest();
@@ -33,6 +26,8 @@ namespace MobileApp
             {
                 foreach (var s in currAppointmentsList)
                 {
+                    if (s.Day.Equals("-1"))
+                        throw new Exception("Creation of appointment doesn't work - date not formatted");
                     temp += "You have an appointment scheduled for " + s.Day + " " + s.Time + "\n";
                 }
             }
@@ -52,6 +47,10 @@ namespace MobileApp
 
             foreach(var s in currAppointmentsList)
             {
+                // throws exception if date not stored in "month/day" form
+                if (s.Day == null || !s.Day.Contains("/"))
+                    throw new Exception("Date not properly formatted for removal of appointment");
+
                 // takes String Date information from db and converts to integer form of month and day
                 String[] monthAndDay = s.Day.Split('/');
                 int theMonth = Convert.ToInt32(monthAndDay[0]);

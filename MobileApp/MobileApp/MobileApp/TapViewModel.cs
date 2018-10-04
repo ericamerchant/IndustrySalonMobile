@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 using System.Windows.Input;
 using Xamarin.Forms;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Diagnostics;
 
 namespace MobileApp
@@ -17,12 +14,14 @@ namespace MobileApp
         ICommand tapCommand;
         ICommand tapCommand2;
         ICommand tapCommand3;
+        ICommand tapCommand4;
 
         public TapViewModel ()
         {
             tapCommand = new Command(OnTapped);
             tapCommand2 = new Command(OnTapped2);
             tapCommand3 = new Command(OnTapped3);
+            tapCommand4 = new Command(OnTapped4);
         }
 
         //Expose the TapCommand via a property so that Xaml can bind to it
@@ -40,6 +39,11 @@ namespace MobileApp
             get { return tapCommand3; }
         }
 
+        public ICommand TapCommand4
+        {
+            get { return tapCommand4; }
+        }
+
         //Called whenever TapCommand is executed (because it was wired up in the constructor)
         void OnTapped (object s)
         {
@@ -52,10 +56,17 @@ namespace MobileApp
             Device.OpenUri(new Uri("http://www.yelp.com"));
         }
 
+        // pulls up keyboard with phone number auto filled in
         void OnTapped3 (object s)
         {
             //check this  is the proper format for the phoneNum
             Device.OpenUri(new Uri("tel:206588-05-70"));
+        }
+
+        // opens up email ready to compose to Industry Salon
+        void OnTapped4(object s)
+        {
+            Device.OpenUri(new Uri("mailto:industrysalonseattle@gmail.com"));
         }
 
 
