@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace MobileApp
 
         public async void onMyAppointmentsClicked(object sender, EventArgs e)
         {
+            Debug.Write("Clicked my appointments");
             await Navigation.PushAsync(new ViewAppointments());
         }
 

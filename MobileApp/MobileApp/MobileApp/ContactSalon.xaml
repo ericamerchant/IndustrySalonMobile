@@ -11,18 +11,29 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                 <Image Source="phone.png"
                        HeightRequest="15"
-                       Margin="0, 20, 10, 10" />
-                <Label Text="206-588-0570"  TextColor="Black"
+                       Margin="0, 20, 10, 10" >
+                       <Image.GestureRecognizers>
+                       <TapGestureRecognizer Command="{Binding TapCommand3}" CommandParameter="Image3" />
+                </Image.GestureRecognizers>
+                </Image>
+                <Label x:Name="PhoneNum"
+                       Text="206-588-0570"  TextColor="Black"
                        Font="Source Sans Pro" FontSize="14" 
                        Margin="0, 20, 0, 10" 
-                       HorizontalTextAlignment="Start"/>
+                       HorizontalTextAlignment="Start" ></Label>
+                
+                
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
                 <Image Source="mail.png"
                        HeightRequest="15"
-                       Margin="0, 0, 10, 10"/>
-                <Label Text="industrysalonseattle@gmail.com"  TextColor="Black"
+                       Margin="0, 0, 10, 10" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapCommand4}" CommandParameter="Image4" />
+                </Image.GestureRecognizers>
+                </Image>
+                    <Label Text="industrysalonseattle@gmail.com"  TextColor="Black"
                        Font="Source Sans Pro" FontSize="14" 
                        Margin="0, 0, 0, 10"
                        HorizontalTextAlignment="Start"/>

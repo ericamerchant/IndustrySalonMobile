@@ -4,12 +4,31 @@
              x:Class="MobileApp.ViewAppointments"
              Title="View Appointments"
              BackgroundColor="WhiteSmoke">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="eachAppointmentStyle" TargetType="Label">
+                <Setter Property="TextColor" 
+                        Value="Black" />
+                <Setter Property="BackgroundColor"
+                        Value="White" />
+                <Setter Property="WidthRequest"
+                        Value="300" />
+                <Setter Property="HeightRequest"
+                        Value="3" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="0,0,0,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Spacing="4" Margin="40, 20, 40, 20" Padding="0, 0, 0, 0">
             <Image Source="industrylogo.png" />
             <Label Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="MY APPOINTMENTS" HorizontalTextAlignment="Center" Margin="0, 0, 0, 10"/>
             <BoxView HorizontalOptions="Center" HeightRequest="2" WidthRequest="300" Color="White" />
 
+            <Label x:Name="seeAppointmentBox" Font="Source Sans Pro" FontSize="14" TextColor="Black" Text="You do not have any appointments." HorizontalOptions="Center" WidthRequest="300" Margin="0, 0, 0, 10" BackgroundColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
